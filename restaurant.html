@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapbox</title>
+    <link rel="stylesheet" href="./css/map.css" />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+      integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./static/element.css" />
+    <script src="./static/vue.js"></script>
+    <script src="./static/element.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"
+    ></script>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+  </head>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"
+  ></script>
+  <script type="text/javascript" src="style.js"></script>
+  <body style="background-color: #2e3843">
+    <div id="app">
+      <div id="map"></div>
+      <div class="left-panel" v-show="this.dataList.length">
+        <div class="list" v-for="(data, index) in this.dataList">
+          <div class="left">
+            <div class="name">{{data.properties.name }}</div>
+            <el-rate
+              v-model="data.properties.rating"
+              disabled
+              show-score
+              text-color="#ff9900"
+            >
+            </el-rate>
+          </div>
+          <img :src="data.properties.image" width="100" height="60" alt="" />
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: "#app",
+        data: {
+          dataList: [],
+        },
+        mounted() {
+          this.initMap();
+        },
+        methods: {
+          initMap() {
+            mapboxgl.accessToken =
+              "pk.eyJ1IjoiYmJvb3V1IiwiYSI6ImNsOTg0ejdrYjBhYmQ0MHJ2a2E4MHJxMncifQ.9-WktV94jTnkQeTQjXFzjw";
+            const map = new mapboxgl.Map({
+              container: "map",
+              style: "mapbox://styles/bboouu/cl98oqjws000g14mw3z7yfuzl",
+              center: [144.946457, -37.840935],
+              zoom: 10,
+            });
+            this.map = map;
+            map.on("load", () => {
+              const popup = new mapboxgl.Popup();
+
+              map.on("mouseenter", "tilequery-points", (event) => {
+                map.getCanvas().style.cursor = "pointer";
+                const properties = event.features[0].properties;
+                const obj = JSON.parse(properties.tilequery);
+                const coordinates = new mapboxgl.LngLat(
+                  properties.longitude,
+                  properties.latitude
+                );
+
+                const content = `<h5>${properties.name}</h5><p>${(
+                  obj.distance / 1609.344
+                ).toFixed(2)} mi. from location</p>`;
+
+                popup.setLngLat(coordinates);
+                popup.setHTML(content);
+                popup.addTo(map);
+                
+                
+              });
+
+              map.on("mouseleave", "tilequery-points", () => {
+                map.getCanvas().style.cursor = "";
+                popup.remove();
+              });
+
+              const geocoder = new MapboxGeocoder({
+                accessToken:
+                  "pk.eyJ1IjoiYmJvb3V1IiwiYSI6ImNsOTg0ejdrYjBhYmQ0MHJ2a2E4MHJxMncifQ.9-WktV94jTnkQeTQjXFzjw",
+                mapboxgl: mapboxgl,
+                zoom: 18,
+                placeholder: "Enter an address or place name",
+                bbox: [144.9, -37.85, 144.99, -37.7],
+              });
+              map.addControl(geocoder, "top-left");
+
+              const marker = new mapboxgl.Marker({ color: "#008000" });
+
+              geocoder.on("result", async (event) => {
+                const point = event.result.center;
+                marker.setLngLat(point).addTo(map);
+                const tileset = "bboouu.2s1ewe1j";
+                const radius = 1609;
+                const limit = 50;
+                const query = await fetch(
+                  `https://api.mapbox.com/v4/${tileset}/tilequery/${point[0]},${point[1]}.json?radius=${radius}&limit= ${limit} &access_token=${mapboxgl.accessToken}`,
+                  { method: "GET" }
+                );
+                const json = await query.json();
+                //console.log(json);
+                this.dataList = json.features;
+                map.getSource("tilequery").setData(json);
+              });
+
+              map.addSource("tilequery", {
+                type: "geojson",
+                data: {
+                  type: "FeatureCollection",
+                  features: [],
+                },
+              
+              });
+
+              //addMarkers();
+
+              map.addLayer({
+                id: "tilequery-points",
+                type: "circle",
+                source: "tilequery",
+                //"source-layer": "Cafes_and_restaurants_with_se-dksaot",
+                paint: {
+                  "circle-stroke-color": "white",
+                  "circle-stroke-width": {
+                    stops: [
+                      [0, 0.1],
+                      [18, 3],
+                    ],
+                    base: 5,
+                  },
+                  "circle-radius": {
+                    stops: [
+                      [12, 5],
+                      [22, 180],
+                    ],
+                    base: 5,
+                  },
+                  "circle-color": [
+                    "match",
+                    ["get", "industry_anzsic4_description"],
+                    "Takeaway Food Services",
+                    "#FF8C00",
+                    "Cafes and Restaurants",
+                    "#FF0000",
+                    "Other Specialised Food Retailing",
+                    "#9ACD32",
+                    "Supermarket and Grocery Stores",
+                    "#9ACD32",
+                    "#FF0000",
+                  ],
+                },
+              });
+            });
+            
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
