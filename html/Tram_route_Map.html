@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapbox</title>
+    <link rel="stylesheet" href="../css/map.css">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
+    
+    
+    
+</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <body style="background-color:#2e3843">
+
+
+    
+   
+    <main class="pt-2">
+        <div class="container">
+            <div id="map"></div>
+
+        </div>
+        
+    </main>
+
+    <style>
+        .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        }
+    </style>
+  
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYmJvb3V1IiwiYSI6ImNsOTg0ejdrYjBhYmQ0MHJ2a2E4MHJxMncifQ.9-WktV94jTnkQeTQjXFzjw';
+        const map = new mapboxgl.Map({
+            container: 'map',
+          style: 'mapbox://styles/bboouu/cl9tmmsq1002q14o45p1lt48g',
+          center: [144.946457,-37.840935],
+          zoom: 12
+          
+        });
+
+       map.on("load",() => {
+
+        map.addSource('route',{
+            "type": 'geojson',
+            'data': {
+                'type': 'Feature',
+                'properties': {},
+                    'geometry': {
+                        'type': 'LineString',
+                        'coordinates': [
+                            [144.96690455927876,-37.8176316450406],
+                            [144.964479208357,-37.818324403770184],
+                            [144.9614014008424,-37.81922319307822],
+                            [144.95786314283018,-37.82023778673241],
+                            [144.95546153614245,-37.82097269970027],
+                            [144.95356912978238,-37.821539117626855],
+                            [144.95109855638137, -37.82190465062153],
+                            [144.94773306350976, -37.82215722680455],
+                            [144.94650837136655,-37.81865571347738],
+                            [144.94512063442602,-37.815426586135686],
+                            [144.94137823870162,-37.813414856197724],
+                            [144.938645561825,-37.814464564872125],
+                            [144.94655055842398,-37.814591782869805],
+                            [144.95149406686252,-37.8131808636857],
+                            [144.95393532833103,-37.812487918072826],
+                            [144.95644059700524,-37.811771476718356],
+                            [144.95891745116262,-37.81105928060848],
+                            [144.96136850025573,-37.810354377085794],
+                            [144.96384957029932,-37.80961884837298],
+                            [144.96634474519394,-37.808876998255194],
+                            [144.96879323779422,-37.8081489607039],
+                            [144.97070054175296,-37.80760292962929],
+                            [ 144.9731036500197,-37.80801062631204],
+                            [ 144.97291405751537,-37.80956201428191],
+                            [144.97406360491075,-37.81358116790275],
+                            [144.97453393804187,-37.81538859129167],
+                            [144.97196946163052,-37.81614537491179],
+                            [144.97015587085124,-37.81667338583987]
+                        ]
+}
+}
+        });
+
+        map.addLayer({
+            "id": "route",
+            "type": "line",
+
+            "source": "route",
+            'layout': {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            "paint": {
+                "line-color": "#ff69b4",
+                'line-width': 8
+            }
+        });
+
+        
+       })
+                    
+ </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>    
+    <script type="text/javascript" src="style.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" href="img/title_icon_red.ico">
+    <title>Tourism Melbourne</title>
+
+    <!-- <meta http-equiv="refresh" content="6;url=http://www.bilibili.com"/> -->
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="./css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link type="text/css" rel="stylesheet" href="css/index.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"/>
+
+</head>
+
+<body>
+    <!-- Navigate Bar -->
+    <div class="navbar-wrapper">
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Melbourne Tourism</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Melbourne Touris</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index.html">Home</a></li>
+                            <li><a href="./html/weather.html">Weather</a></li>
+                            <li><a href="./html/tansport.html">Transport</a></li>
+                            <li><a href="./html/maps.html">Maps</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </div><!-- Navigate Bar -->
+
+
+    <!-- Carousel-->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:950px">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active" style="height:950px">
+                <img class="first-slide" style="height:950px"
+                    src="./img/photo-1585217514204-d025f2f1b116.avif"
+                    alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>WOMINJEKA 
+                        </h1>
+                        <p>Welcome to the City of Melbourne.
+                            Wominjeka / Womindjeka means ‘welcome’ in the Woi Wurrung language of the Wurundjeri people and Boon Wurrung language of the Bunurong people of the Eastern Kulin.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="item" style="height:950px">
+                <img class="second-slide" style="height:950px"
+                    src="./img/photo-1494236472818-d35e50e604cf.avif"
+                    alt="Second slide">
+                <div class="container">
+                    <div class="carousel-caption"> 
+                        <h1>LIVE FULLY IN MELBOURNE</h1>
+                        <p>Now you are free to discover and enjoy various wild nature destinations like limestone mountains, green terraced rice fields, and white sandy beaches. Holidays are coming, let’s get away from it all.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item" style="height:950px">
+                <img class="third-slide" style="height:950px"
+                    src="./img/Snipaste_2022-10-30_16-56-56.png"
+                    alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>MAPS</h1>
+                        <p>Explore Melbourne in our interactive maps.</p>
+                        <p><a class="btn btn-lg btn-primary" href="./html/maps.html" role="button">Browse maps</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="sr-only">Next</span>
+        </a>
+    </div><!-- Carousel-->
+
+
+
+    <!-- All Content -->
+    <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-4">
+                <img class="img-circle"
+                    src="./img/Transport_1.jpg"
+                    alt="Generic placeholder image" width="140" height="140">
+                <h2>TRANSPORT</h2>
+                <p>Trains, trams and buses will get you just about anywhere you want to go in Melbourne. Public transport has you covered in Melbourne and regional areas.</p>
+                <p><a class="btn btn-default" href="./html/tansport.html" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img class="img-circle"
+                    src="./img/Weather white_1.jpg"
+                    alt="Generic placeholder image" width="140" height="140">
+                <h2>WEATHER</h2>
+                <p>Get the forecast for today, tonight & tomorrow's weather for Melbourne, Victoria, Australia.</p>
+                <p><a class="btn btn-default" href="./html/weather.html" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img class="img-circle"
+                    src="./img/Health and Safety_0.jpg" 
+                    alt="Generic placeholder image" width="140" height="140">
+                <h2>MAP</h2>
+                <p>Explore Melbourne in our interactive maps.</p>
+                <p><a class="btn btn-default" href="./html/maps.html" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+
+        <!-- START THE FEATURETTES -->
+
+
+
+        <div class="row featurette">
+            <div class="col-md-4">
+                <h2 class="featurette-heading">Things to do. <span class="text-muted">It'll blow your
+                        mind.</span></h2>
+            </div>
+            <div class="col-lg-4" style="padding: 0;">
+                    <!-- <br><br> -->
+                    <!-- <div class="mapBox">
+                        <canvas id="gmapToDo"></canvas>
+                    </div> -->
+                    <div id="gmapToDo" style="padding: 0;"></div>
+                    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
+                    <script src="./js/prepare_gmap_ttd.js"></script>
+                
+            </div>
+        </div>
+
+
+
+        <div class="row featurette">
+            <div class="col-md-7 col-md-push-7" style="">
+                <h2 class="featurette-heading">Melbourne's Most Popular Tourist Sites. <span class="text-muted">See for
+                        yourself.</span></h2>
+            </div>
+            <div class="col-md-5 col-md-pull-6" >
+                <div class="">
+                    <!-- <br><br> -->
+                    <div class="bubbleBox" >
+                        <canvas id="wikiTop" style="width: 400px; height: 400px;"></canvas>
+                    </div>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
+                    <script src="./js/prepare_wiki_top.js"></script>
+                    
+                </div><!-- /.col-lg-4 -->
+                <br><br>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+
+
+        <!-- /END THE FEATURETTES -->
+
+
+        <!-- FOOTER -->
+        <footer>
+            <p class="pull-right"><a href="#">Back to top</a></p>
+            <p>&copy; 2016 Company, Inc. &middot; </p>
+        </footer>
+
+    </div><!-- All Content -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="./js/jquery.min.js"><\/script>')</script>
+    <script src="./js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+
+
+    <!-- Custom js -->
+    <script type="text/javascript" src="js/index.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>

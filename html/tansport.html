@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" href="../img/title_icon_red.ico">
+    <title>Tourism Melbourne</title>
+
+    <!-- <meta http-equiv="refresh" content="6;url=http://www.bilibili.com"/> -->
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link type="text/css" rel="stylesheet" href="../css/index.css">
+
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+</head>
+
+<body>
+        <!-- Navigate Bar -->
+        <div class="navbar-wrapper">
+            <div class="container">
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Melbourne Tourism</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Melbourne Touris</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li ><a href="../index.html">Home</a></li>
+                                <li ><a href="../html/weather.html">Weather</a></li>
+                                <li class="active"><a href="../html/tansport.html">Transport</a></li>
+                                <li><a href="../html/maps.html">Maps</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+    
+            </div>
+        </div><!-- Navigate Bar -->
+    
+
+
+
+
+
+
+    <!-- All Content -->
+    <div class="container marketing" style="padding-top: 70px; padding-bottom: 50px;">
+        
+        <h2>Public transport</h2>
+
+        <div class="space-below">
+            <div class="MainPageContent">
+            <div>
+         
+                <div id="ctl00_PlaceHolderMain_ctl04_txtPublishingPageContentDisplay_label" style='display:none'>Page Content</div>
+                <div id="ctl00_PlaceHolderMain_ctl04_txtPublishingPageContentDisplay__ControlWrapper_RichHtmlField" class="ms-rtestate-field" style="display:inline" aria-labelledby="ctl00_PlaceHolderMain_ctl04_txtPublishingPageContentDisplay_label">
+                    <h2>Trams, trains and buses</h2>
+                    <p>Buy a Myki smartcard for flexible travel between trains, trams and buses. You'll be able to use public transport in and around the city for just a few hours or all day.</p>
+                    <p>Plan your trip, buy or top up your Myki card online and download maps and timetables from 
+                        Public Transport Victoria, 
+                        the one-stop shop for information about travelling on public transport (phone 1800 800 007).
+                    </p>
+                    <img width="100%" src="../img/Snipaste_2022-10-30_20-09-47.png">
+                    <h2>Night Network </h2>
+                    <p>Running since 1 January 2016, Melbourne's Night Network trial&#160;has&#160;provided 24 hour public transport on weekends with all night trains and trams,
+                         late night buses, and a 2am coach service to key regional centres.
+                    </p>
+                    
+                    <h2>City Circle Tram</h2>
+                    <p>The City Circle Tram is a free service around central Melbourne taking passengers past some of Melbourne's major attractions. Visit 
+                        <a href="../html/Tram_route_Map.html">Free City Loop Tram</a> 
+                        for a route map.
+                    </p>
+
+                    
+                    <h2> Taxis</h2>
+                    <p>There are many designated taxi ranks across the central city. See the <a href="https://www.melbourne.vic.gov.au/pages/mapviewer.aspx?asrc=/parking-and-transport/public-transport/Pages/public-transport.aspx&id=g_62686b58_65d4_4c22_b642_2e856ca5406a">
+                        map
+                    </a> for locations.<br>
+                    </p>
+                    <h2> Navigation</h2>
+                    <p>Here is a navigation map.
+                    </p>
+                    <style>
+                        #map{
+
+                        }
+                    </style>
+                    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+                    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
+                    <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+                    <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+                    <div id='map' style='width: 1000px; height: 500px;'></div>
+                    <script>
+                        mapboxgl.accessToken = 'pk.eyJ1IjoidG9ueTk5enoiLCJhIjoiY2w5czMwNTJlMG1vaTNwcW1jazZxZDRrZiJ9.exDxMl3Nw2F-I5JLKbF_SQ';
+                    const map = new mapboxgl.Map({
+                    container: 'map',
+                    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                    center: [144.961,-37.815],
+                    zoom: 12
+                    });
+                     
+                    map.addControl(
+                    new MapboxDirections({
+                    accessToken: mapboxgl.accessToken
+                    }),
+                    'top-left'
+                    );
+                    </script>
+
+            </div>    
+        </div>    
+    </div>               
+        </div>
+
+
+
+
+
+
+    </div><!-- All Content -->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+
+    <!-- Custom js -->
+    <script type="text/javascript" src="../js/index.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>
+
+
+
