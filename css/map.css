@@ -1,0 +1,55 @@
+#app {
+	width: 100%;
+	height: 100%;
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.left-panel {
+	padding: 10px;
+	background: #fff;
+	position: absolute;
+	z-index: 100;
+	top: 100px;
+	right: 15px;
+	border-radius: 4px;
+	overflow-y: scroll;
+	max-height: 500px;
+}
+
+.left-panel .list {
+	display: flex;
+	justify-content: space-between;
+	width: 280px;
+}
+
+.left-panel .list:not(:last-child) {
+
+	margin-bottom: 10px;
+}
+
+.left-panel .list .left {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.left-panel .list .name {
+	color: #ce722b;
+	font-weight: 500;
+	font-size: 16px;
+	margin-bottom: 7px;
+}
+.marker {
+	border: none;
+	cursor: pointer;
+	height: 56px;
+	width: 56px;
+	background-image: url(marker.png);
+	}
